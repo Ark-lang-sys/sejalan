@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Top Matches — Sejalan</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { scroll-behavior: smooth; }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 text-gray-800">
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-full bg-pink-600 text-white flex items-center justify-center font-bold">S</div>
+      <span class="font-bold text-lg text-pink-600">SEJALAN</span>
+    </div>
+    <a href="dashboard.html" class="text-sm text-gray-600 hover:text-pink-500">← Dashboard</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="max-w-6xl mx-auto px-4 py-14 text-center">
+  <h1 class="text-3xl font-bold text-gray-900">Rekomendasi Sejalan</h1>
+  <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+    Rekomendasi berdasarkan kesiapan, nilai, dan pola relasi — bukan sekadar tampilan.
+  </p>
+</section>
+
+<!-- ================= MATCH CARD ================= -->
+<section class="max-w-6xl mx-auto px-4 pb-24">
+  <div class="bg-white rounded-2xl p-6 shadow">
+
+    <div class="flex gap-4">
+      <!-- FOTO (CLICKABLE) -->
+      <button onclick="openModal()" class="w-24 h-32 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 focus:outline-none">
+        <img
+          src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e"
+          class="w-full h-full object-cover"
+          alt="Foto rekomendasi"
+        />
+      </button>
+
+      <!-- INFO -->
+      <div class="flex-1">
+        <h3 class="font-semibold text-lg">A — 29 tahun, Bandung</h3>
+        <p class="text-sm text-gray-600 mt-1">
+          Pendidikan • Nilai keluarga kuat • Komunikasi reflektif
+        </p>
+
+        <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
+          <div class="bg-rose-50 p-3 rounded-lg">
+            <span class="block text-xs text-gray-500">Kecocokan Nilai</span>
+            <span class="font-semibold text-pink-600">Tinggi</span>
+          </div>
+          <div class="bg-rose-50 p-3 rounded-lg">
+            <span class="block text-xs text-gray-500">Readiness Relasi</span>
+            <span class="font-semibold text-pink-600">Stabil</span>
+          </div>
+        </div>
+
+        <button onclick="openModal()" class="mt-5 px-5 py-2 rounded-full bg-pink-500 text-white text-sm hover:bg-pink-600">
+          Lihat Ringkasan
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= MODAL ================= -->
+<div id="modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden items-center justify-center px-4 z-50">
+  <div class="bg-white rounded-2xl max-w-lg w-full p-6 relative animate-fadeIn">
+
+    <!-- CLOSE -->
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+      ✕
+    </button>
+
+    <!-- HEADER -->
+    <h2 class="text-xl font-bold text-gray-900">
+      Ringkasan Psikologis
+    </h2>
+    <p class="text-sm text-gray-500 mt-1">
+      Disusun dari asesmen awal & refleksi diri
+    </p>
+
+    <!-- CONTENT -->
+    <div class="mt-6 space-y-4 text-sm text-gray-700 leading-relaxed">
+
+      <div>
+        <span class="font-semibold text-pink-600">Gambaran Umum</span>
+        <p class="mt-1">
+          Individu dengan orientasi jangka panjang, cenderung reflektif,
+          dan menunjukkan kesiapan emosional yang stabil.
+        </p>
+      </div>
+
+      <div>
+        <span class="font-semibold text-pink-600">Nilai & Relasi</span>
+        <p class="mt-1">
+          Menempatkan keluarga dan pertumbuhan bersama sebagai fondasi utama.
+          Gaya komunikasi terbuka namun berhati-hati.
+        </p>
+      </div>
+
+      <div>
+        <span class="font-semibold text-pink-600">Catatan Pendampingan</span>
+        <p class="mt-1">
+          Tidak ditemukan red flag mayor.
+          Disarankan eksplorasi ekspektasi peran dan ritme kedekatan emosional.
+        </p>
+      </div>
+
+      <div class="bg-rose-50 p-4 rounded-xl">
+        <span class="font-semibold text-pink-600">Readiness Score</span>
+        <p class="text-lg font-bold mt-1">8.2 / 10</p>
+      </div>
+
+    </div>
+
+    <!-- ACTION -->
+    <div class="mt-6 flex gap-3">
+      <button class="flex-1 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600">
+        Ajukan Pendampingan
+      </button>
+      <button onclick="closeModal()" class="flex-1 py-2 rounded-full border border-gray-300 text-gray-600">
+        Tutup
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  const modal = document.getElementById("modal");
+
+  function openModal() {
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+  }
+
+  function closeModal() {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  }
+</script>
+
+</body>
+</html>

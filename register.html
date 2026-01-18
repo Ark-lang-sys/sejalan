@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — Sejalan</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animasi Halus -->
+  <style>
+    .fade-up {
+      animation: fadeUp .8s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center
+             bg-gradient-to-br from-rose-100 via-white to-pink-200 px-4">
+
+  <!-- CARD -->
+  <div class="w-full max-w-md fade-up">
+
+    <div class="bg-white p-8 rounded-3xl shadow-2xl">
+
+      <!-- Logo -->
+      <div class="flex flex-col items-center mb-8">
+        <div class="w-20 h-20 rounded-full
+                    bg-gradient-to-br from-white-500 to-rose-600
+                    text-white flex items-center justify-center
+                    font-bold text-2xl shadow">
+          <img
+      src="assets/logo-sejalan.png"
+      alt="Sejalan"
+      class="h-15 w-auto"
+    />
+        </div>
+        <h1 class="mt-4 text-2xl font-bold text-gray-900">
+          Daftar Akun
+        </h1>
+        <p class="mt-2 text-sm text-gray-500 text-center">
+          Langkah awal menuju hubungan yang sejalan
+        </p>
+      </div>
+
+      <!-- FORM -->
+      <form id="registerForm" class="space-y-4">
+
+        <input
+          id="name"
+          type="text"
+          placeholder="Nama Lengkap"
+          class="w-full px-4 py-3 border rounded-xl
+                 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          required
+        />
+
+        <input
+          id="email"
+          type="email"
+          placeholder="Email"
+          class="w-full px-4 py-3 border rounded-xl
+                 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          required
+        />
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Password (min. 6 karakter)"
+          class="w-full px-4 py-3 border rounded-xl
+                 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          required
+        />
+
+        <input
+          id="age"
+          type="number"
+          min="18"
+          placeholder="Usia (minimal 18)"
+          class="w-full px-4 py-3 border rounded-xl
+                 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          required
+        />
+
+        <input
+          id="location"
+          type="text"
+          placeholder="Domisili (Kota)"
+          class="w-full px-4 py-3 border rounded-xl
+                 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          required
+        />
+
+        <!-- Agreement -->
+        <div class="text-sm text-gray-600 space-y-3 mt-4">
+
+          <label class="flex items-start gap-2">
+            <input type="checkbox" id="serious" required class="mt-1" />
+            <span>Saya serius untuk menikah</span>
+          </label>
+
+          <label class="flex items-start gap-2">
+            <input type="checkbox" id="agreeTerms" required class="mt-1" />
+            <span>Saya menyetujui Syarat, Privasi & Code of Conduct (anti-harassment, no sexual solicitation, respectful behaviour)</span>
+          </label>
+
+          <label class="flex items-start gap-2">
+            <input type="checkbox" id="dataConsent" required class="mt-1" />
+            <span>Saya setuju pemrosesan data & moderasi admin</span>
+          </label>
+
+        </div>
+
+        <button
+          type="submit"
+          class="w-full mt-6 bg-gradient-to-r from-pink-500 to-rose-600
+                 text-white py-3 rounded-xl font-medium
+                 hover:opacity-90 transition">
+          Daftar & Lanjutkan
+        </button>
+
+      </form>
+
+      <p class="text-center text-sm text-gray-600 mt-6">
+        Sudah punya akun?
+        <a href="login.html" class="text-pink-600 font-semibold hover:underline">
+          Login
+        </a>
+      </p>
+
+    </div>
+
+    <p class="text-center text-xs text-gray-400 mt-6">
+      SEJALAN — Bertemu, Bertumbuh, Menuju Kita
+    </p>
+
+  </div>
+
+  <!-- SCRIPT REGISTER -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import {
+      createUserWithEmailAndPassword,
+      sendEmailVerification
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const form = document.getElementById("registerForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const age = document.getElementById("age").value;
+      const location = document.getElementById("location").value;
+
+      const serious = document.getElementById("serious").checked;
+      const agreeTerms = document.getElementById("agreeTerms").checked;
+      const dataConsent = document.getElementById("dataConsent").checked;
+
+      if (!serious || !agreeTerms || !dataConsent) {
+        alert("Harap setujui semua persyaratan.");
+        return;
+      }
+
+      try {
+        // AUTH
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        // FIRESTORE
+        const db = getFirestore();
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+          name,
+          email,
+          age: Number(age),
+          location,
+          role: "user",
+          emailVerified: false,
+          createdAt: serverTimestamp()
+        });
+
+        // EMAIL VERIFICATION
+        await sendEmailVerification(userCredential.user);
+
+        alert("Registrasi berhasil! Silakan cek email untuk verifikasi.");
+        window.location.href = "login.html";
+
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
+
+</body>
+</html>

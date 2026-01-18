@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deep Assessment — Sejalan</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { scroll-behavior: smooth; }
+    .fade { animation: fade .4s ease forwards; opacity: 0; }
+    @keyframes fade { to { opacity: 1; } }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-pink-100 via-white to-rose-200 min-h-screen">
+
+<!-- HEADER -->
+<header class="bg-white/90 backdrop-blur border-b sticky top-0 z-50">
+  <div class="max-w-3xl mx-auto px-4 py-3 flex items-center gap-3">
+    <div class="w-9 h-9 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold">
+      S
+    </div>
+    <span class="font-bold text-lg text-pink-600">SEJALAN</span>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 pt-6 pb-32">
+
+<!-- INTRO -->
+<section>
+  <h1 class="text-2xl font-bold text-gray-900">
+    Deep Self-Assessment
+  </h1>
+  <p class="mt-3 text-gray-600 text-sm leading-relaxed">
+    Asesmen ini membantu kami memahami nilai hidup, kesiapan relasi,
+    dan pola interaksi Anda.  
+    <br><br>
+    Jawaban bersifat rahasia dan digunakan untuk pendampingan,
+    bukan penilaian.
+  </p>
+
+  <!-- Progress -->
+  <div class="mt-4">
+    <div class="flex justify-between text-xs text-gray-500 mb-1">
+      <span>Progress</span>
+      <span id="progressText">1 / 6</span>
+    </div>
+    <div class="w-full h-2 bg-gray-200 rounded-full">
+      <div id="progressBar" class="h-2 bg-pink-500 rounded-full" style="width:16%"></div>
+    </div>
+  </div>
+</section>
+
+<form id="assessmentForm" class="mt-6 space-y-6">
+
+<!-- STEP 1 -->
+<section class="step bg-white p-5 rounded-2xl shadow fade">
+  <h2 class="font-semibold text-pink-600 mb-3">Nilai & Prinsip Hidup</h2>
+
+  <label class="block text-sm mb-4">
+    Nilai yang paling penting dalam hidup saya:
+    <textarea id="values" required class="w-full mt-2 p-3 border rounded-xl"></textarea>
+  </label>
+
+  <label class="block text-sm">
+    Dalam hubungan, nilai yang tidak bisa saya kompromikan:
+    <textarea id="nonNegotiable" required class="w-full mt-2 p-3 border rounded-xl"></textarea>
+  </label>
+</section>
+
+<!-- STEP 2 -->
+<section class="step hidden bg-white p-5 rounded-2xl shadow fade">
+  <h2 class="font-semibold text-pink-600 mb-3">Tujuan Relasi & Pernikahan</h2>
+
+  <label class="block text-sm mb-4">
+    Tujuan utama saya menikah:
+    <textarea id="relationshipGoal" required class="w-full mt-2 p-3 border rounded-xl"></textarea>
+  </label>
+
+  <label class="block text-sm">
+    Ekspektasi saya terhadap pasangan:
+    <textarea id="expectations" required class="w-full mt-2 p-3 border rounded-xl"></textarea>
+  </label>
+</section>
+
+<!-- STEP 3 -->
+<section class="step hidden bg-white p-5 rounded-2xl shadow fade">
+  <h2 class="font-semibold text-pink-600 mb-3">Konflik & Komunikasi</h2>
+
+  <label class="block text-sm mb-4">
+    Saat konflik, saya cenderung:
+    <select id="conflictStyle" required class="w-full mt-2 p-3 border rounded-xl">
+      <option value="">Pilih</option>
+      <option value="dialogue">Mengajak bicara & mencari solusi</option>
+      <option value="avoid">Menghindari konflik</option>
+      <option value="emotional">Reaktif / emosional</option>
+    </select>
+  </label>
+
+  <label class="block text-sm">
+    Saya nyaman menyampaikan kebutuhan & batasan saya:
+    <select id="communicationComfort" required class="w-full mt-2 p-3 border rounded-xl">
+      <option value="">Pilih</option>
+      <option value="1">Tidak nyaman</option>
+      <option value="2">Cukup nyaman</option>
+      <option value="3">Sangat nyaman</option>
+    </select>
+  </label>
+</section>
+
+<!-- STEP 4 -->
+<section class="step hidden bg-white p-5 rounded-2xl shadow fade">
+  <h2 class="font-semibold text-pink-600 mb-3">Pola Keterikatan</h2>
+
+  <select id="attachmentStyle" required class="w-full p-3 border rounded-xl">
+    <option value="">Pilih</option>
+    <option value="secure">Tenang & terbuka</option>
+    <option value="anxious">Mudah cemas</option>
+    <option value="avoidant">Menjaga jarak</option>
+  </select>
+</section>
+
+<!-- STEP 5 -->
+<section class="step hidden bg-white p-5 rounded-2xl shadow fade">
+  <h2 class="font-semibold text-pink-600 mb-3">Kesiapan & Batasan</h2>
+
+  <label class="block text-sm mb-4">
+    Hal yang belum siap saya toleransi:
+    <textarea id="boundaries" required class="w-full mt-2 p-3 border rounded-xl"></textarea>
+  </label>
+
+  <select id="readiness" required class="w-full p-3 border rounded-xl">
+    <option value="">Kesiapan emosional</option>
+    <option value="low">Belum siap</option>
+    <option value="medium">Cukup siap</option>
+    <option value="high">Siap</option>
+  </select>
+</section>
+
+<!-- STEP 6 -->
+<section class="step hidden bg-white p-5 rounded-2xl shadow fade">
+  <h2 class="font-semibold text-pink-600 mb-3">Klarifikasi & Integritas</h2>
+
+  <label class="block text-sm mb-4">
+    Alasan utama saya bergabung di Sejalan:
+    <textarea id="intent" required class="w-full mt-2 p-3 border rounded-xl"></textarea>
+  </label>
+
+  <label class="flex gap-3 text-sm text-gray-600">
+    <input type="checkbox" id="honestyCheck" required class="mt-1">
+    <span>Saya mengisi asesmen ini dengan jujur.</span>
+  </label>
+</section>
+
+</form>
+</main>
+
+<!-- NAV BAR MOBILE -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t px-4 py-3 flex justify-between">
+  <button id="prevBtn" class="text-sm text-gray-500 hidden">← Kembali</button>
+  <button id="nextBtn" class="bg-pink-500 text-white px-6 py-2 rounded-full">
+    Lanjut →
+  </button>
+</div>
+
+<script type="module">
+  import { auth } from "./firebase.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getFirestore, doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const steps = document.querySelectorAll(".step");
+  const progressBar = document.getElementById("progressBar");
+  const progressText = document.getElementById("progressText");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+
+  let current = 0;
+
+  function updateUI() {
+    steps.forEach((s, i) => s.classList.toggle("hidden", i !== current));
+    progressBar.style.width = ((current + 1) / steps.length) * 100 + "%";
+    progressText.textContent = `${current + 1} / ${steps.length}`;
+    prevBtn.classList.toggle("hidden", current === 0);
+    nextBtn.textContent = current === steps.length - 1 ? "Simpan" : "Lanjut →";
+  }
+
+  updateUI();
+
+  onAuthStateChanged(auth, user => {
+    if (!user) location.href = "login.html";
+  });
+
+  nextBtn.onclick = async () => {
+    if (current < steps.length - 1) {
+      current++;
+      updateUI();
+      return;
+    }
+
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const db = getFirestore();
+    await updateDoc(doc(db, "users", user.uid), {
+  assessment: {
+    values: values.value,
+    nonNegotiable: nonNegotiable.value,
+    relationshipGoal: relationshipGoal.value,
+    expectations: expectations.value,
+    conflictStyle: conflictStyle.value,
+    communicationComfort: communicationComfort.value,
+    attachmentStyle: attachmentStyle.value,
+    boundaries: boundaries.value,
+    readiness: readiness.value,
+    intent: intent.value
+  },
+
+  assessmentResult: {
+    readinessScore: 78,
+    readinessLevel: "Cukup Siap",
+    summary: {
+      valuesTheme: "Keluarga & kejujuran",
+      relationshipOrientation: "Marriage-oriented",
+      communicationPattern: "Cenderung dialogis",
+      attachmentInsight: "Relatif aman, dengan kewaspadaan emosional"
+    },
+    flaggedTopics: [
+      "Ekspektasi pasangan cukup tinggi",
+      "Sensitivitas terhadap konflik emosional"
+    ],
+    systemNotes: {
+      matchingWeight: 0.8,
+      needsInterviewClarification: true
+    }
+  },
+
+  assessmentCompletedAt: serverTimestamp(),
+  step2Completed: true
+});
+
+    location.href = "matches.html";
+  };
+
+  prevBtn.onclick = () => {
+    current--;
+    updateUI();
+  };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sejalan — Bertemu, Bertumbuh, Menuju Kita</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { scroll-behavior: smooth; }
+
+    /* ===== ANIMATION ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.8s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: .15s; }
+    .delay-2 { transition-delay: .3s; }
+    .delay-3 { transition-delay: .45s; }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-pink-50 via-white to-rose-50 text-gray-800">
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <img src="assets/logo-sejalan.png" alt="Sejalan" class="h-8 w-auto"/>
+      <span class="font-bold text-xl text-pink-600">SEJALAN</span>
+    </div>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="#tentang" class="hover:text-pink-500">Tentang</a>
+      <a href="#pendekatan" class="hover:text-pink-500">Pendekatan</a>
+      <a href="#visi" class="hover:text-pink-500">Visi & Misi</a>
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="hidden md:flex items-center gap-4">
+      <a href="login.html"
+         class="text-gray-700 hover:text-pink-500 text-sm font-medium transition">
+        Login
+      </a>
+      <a href="register.html"
+         class="bg-pink-500 text-white px-5 py-2 rounded-full text-sm hover:bg-pink-600 transition">
+        Mulai
+      </a>
+    </div>
+
+    <!-- Mobile Button -->
+    <button id="menuBtn" class="md:hidden text-gray-700">
+      ☰
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+    <div class="px-6 py-4 space-y-4 text-sm">
+      <a href="#tentang" class="block">Tentang</a>
+      <a href="#pendekatan" class="block">Pendekatan</a>
+      <a href="#visi" class="block">Visi & Misi</a>
+      <hr>
+      <a href="login.html" class="block text-pink-600 font-medium">Login</a>
+      <a href="register.html"
+         class="block bg-pink-500 text-white text-center py-2 rounded-full">
+        Mulai
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="max-w-7xl mx-auto px-4 md:px-6 py-20 md:py-24 text-center">
+  <h1 class="text-4xl md:text-5xl font-bold text-gray-900 reveal">
+    SEJALAN
+  </h1>
+  <p class="mt-4 text-xl text-pink-600 font-medium reveal delay-1">
+    Bertemu, Bertumbuh, Menuju Kita
+  </p>
+
+  <p class="max-w-3xl mx-auto mt-8 text-base md:text-lg text-gray-600 reveal delay-2">
+    Karena hubungan yang baik tidak hanya tentang bertemu,
+    tetapi tentang kesiapan, tanggung jawab,
+    dan nilai yang sejalan.
+  </p>
+
+  <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 reveal delay-3">
+    <a href="register.html"
+       class="bg-pink-500 text-white px-8 py-3 rounded-full hover:bg-pink-600 transition">
+      Mulai Perjalanan
+    </a>
+    <a href="#tentang"
+       class="border border-pink-400 text-pink-500 px-8 py-3 rounded-full hover:bg-pink-50 transition">
+      Pelajari Lebih Lanjut
+    </a>
+  </div>
+</section>
+
+<!-- ================= TENTANG ================= -->
+<section id="tentang" class="bg-white py-16 md:py-20">
+  <div class="max-w-6xl mx-auto px-4 md:px-6 text-center reveal">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">
+      Tentang Sejalan
+    </h2>
+    <p class="text-gray-600 max-w-4xl mx-auto">
+      Kami hadir sebagai ruang yang aman, beradab, dan bertanggung jawab, di mana proses saling mengenal difasilitasi secara terarah oleh tim, dengan pendekatan psikologis dan pendampingan manusia, bukan sekadar algoritma.
+Setiap individu melalui tahapan refleksi diri, asesmen psikologis, dan pendampingan yang dirancang untuk membantu menemukan pasangan yang benar-benar sejalan, secara nilai, kesiapan, dan tujuan hidup.
+    </p>
+<p class="text-gray-600 max-w-4xl mx-auto">
+      Jika ditemukan tantangan personal, ekspektasi yang belum realistis, atau kebutuhan penguatan diri, Sejalan menyediakan sesi konseling, terapi, dan workshop sebagai bagian dari proses bertumbuh bersama.
+    </p>
+
+  
+
+  </div>
+</section>
+
+<!-- ================= PENDEKATAN ================= -->
+<section id="pendekatan" class="py-16 md:py-20 bg-gradient-to-br from-rose-50 to-pink-50">
+  <div class="max-w-6xl mx-auto px-4 md:px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 reveal">
+      Pendekatan Kami
+    </h2>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="bg-white p-6 rounded-2xl shadow reveal delay-1">
+        <h3 class="text-pink-600 font-semibold mb-2">Refleksi & Asesmen</h3>
+        <p class="text-sm text-gray-600">
+          Memahami kesiapan dan pola relasi secara bertanggung jawab.
+        </p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow reveal delay-2">
+        <h3 class="text-pink-600 font-semibold mb-2">Pendampingan Manusia</h3>
+        <p class="text-sm text-gray-600">
+          Difasilitasi tim, bukan sekadar algoritma.
+        </p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow reveal delay-3">
+        <h3 class="text-pink-600 font-semibold mb-2">Bertumbuh Bersama</h3>
+        <p class="text-sm text-gray-600">
+          Konseling & workshop sebagai bagian proses.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISI MISI ================= -->
+<section id="visi" class="py-16 md:py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4 md:px-6 grid gap-10 md:grid-cols-2">
+    <div class="reveal">
+      <h2 class="text-3xl font-bold mb-4">Visi</h2>
+      <p class="text-gray-600">
+        Menjadi partner terpercaya untuk membangun keluarga harmonis.
+      </p>
+    </div>
+    <div class="reveal delay-1">
+      <h2 class="text-3xl font-bold mb-4">Misi</h2>
+      <ul class="list-disc list-inside text-gray-600 space-y-3">
+        <li>Pendekatan beradab & bertanggung jawab</li>
+        <li>Teknologi yang etis</li>
+        <li>Fokus kesiapan & pertumbuhan diri</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-pink-600 text-white py-6">
+  <div class="text-center text-sm px-4">
+    © 2026 SEJALAN — Bertemu, Bertumbuh, Menuju Kita
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // Reveal animation
+  const reveals = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("show");
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  document.getElementById("menuBtn").onclick = () => {
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+  };
+</script>
+
+</body>
+</html>

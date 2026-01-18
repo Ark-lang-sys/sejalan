@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team Verification — Sejalan</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 text-gray-800">
+
+<!-- ================= HEADER ================= -->
+<header class="bg-white/80 backdrop-blur border-b sticky top-0 z-40">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-full bg-pink-600 text-white flex items-center justify-center font-bold">S</div>
+      <span class="font-bold text-pink-600">SEJALAN</span>
+    </div>
+    <a href="dashboard.html" class="text-sm text-gray-600 hover:text-pink-500">← Dashboard</a>
+  </div>
+</header>
+
+<!-- ================= CONTENT ================= -->
+<main class="max-w-3xl mx-auto px-4 py-16">
+
+  <!-- INTRO -->
+  <section class="text-center">
+    <h1 class="text-3xl font-bold text-gray-900">
+      Verifikasi & Pendampingan Awal
+    </h1>
+    <p class="mt-4 text-gray-600 leading-relaxed">
+      Sesi singkat bersama tim Sejalan untuk memastikan proses berjalan aman,
+      realistis, dan bertanggung jawab.
+    </p>
+  </section>
+
+  <!-- INFO -->
+  <section class="mt-10 bg-white rounded-2xl shadow p-6 space-y-4 text-sm">
+    <div>
+      <span class="font-semibold text-pink-600">Yang akan dibahas</span>
+      <ul class="list-disc list-inside mt-2 text-gray-600 space-y-1">
+        <li>Verifikasi identitas & keseriusan</li>
+        <li>Klarifikasi assessment</li>
+        <li>Ekspektasi & kesiapan relasi</li>
+        <li>Kesiapan proses moderasi</li>
+      </ul>
+    </div>
+
+    <div class="bg-rose-50 p-4 rounded-xl text-gray-700">
+      ⚠️ Tidak ada lulus/gagal.  
+      Tujuan sesi ini adalah kejelasan dan kesiapan.
+    </div>
+  </section>
+
+  <!-- ================= BOOKING ================= -->
+  <section class="mt-12 bg-white rounded-2xl shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 text-center">
+      Pilih Jadwal Wawancara
+    </h2>
+
+    <!-- STEP 1: DAY -->
+    <div class="mt-8">
+      <p class="text-sm font-medium text-gray-700 mb-3">1️⃣ Pilih Hari</p>
+      <div class="grid grid-cols-3 gap-3">
+        <button onclick="selectDay(this)" class="day-btn">Senin</button>
+        <button onclick="selectDay(this)" class="day-btn">Rabu</button>
+        <button onclick="selectDay(this)" class="day-btn">Jumat</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: DATE -->
+    <div class="mt-8 hidden" id="dateSection">
+      <p class="text-sm font-medium text-gray-700 mb-3">2️⃣ Pilih Tanggal</p>
+      <div class="grid grid-cols-3 gap-3">
+        <button onclick="selectDate(this)" class="date-btn">22 Jan</button>
+        <button onclick="selectDate(this)" class="date-btn">23 Jan</button>
+        <button onclick="selectDate(this)" class="date-btn">24 Jan</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: TIME -->
+    <div class="mt-8 hidden" id="timeSection">
+      <p class="text-sm font-medium text-gray-700 mb-3">3️⃣ Pilih Waktu</p>
+      <div class="grid grid-cols-2 gap-3">
+        <button onclick="selectTime(this)" class="time-btn">10:00</button>
+        <button onclick="selectTime(this)" class="time-btn">13:00</button>
+        <button onclick="selectTime(this)" class="time-btn">19:00</button>
+        <button onclick="selectTime(this)" class="time-btn">20:30</button>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="mt-8 hidden bg-rose-50 p-4 rounded-xl text-sm text-gray-700" id="summary">
+      <p class="font-medium text-pink-600">Jadwal Terpilih</p>
+      <p id="summaryText" class="mt-1"></p>
+    </div>
+
+    <!-- ACTION -->
+    <div class="mt-10 text-center">
+      <button
+        id="confirmBtn"
+        disabled
+        class="px-8 py-3 rounded-full bg-gray-300 text-white cursor-not-allowed">
+        Konfirmasi Jadwal
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  let selectedDay = "";
+  let selectedDate = "";
+  let selectedTime = "";
+
+  function resetButtons(className) {
+    document.querySelectorAll("." + className).forEach(btn => {
+      btn.classList.remove("bg-pink-500", "text-white");
+      btn.classList.add("border");
+    });
+  }
+
+  function selectDay(btn) {
+    resetButtons("day-btn");
+    btn.classList.add("bg-pink-500", "text-white");
+    selectedDay = btn.innerText;
+    document.getElementById("dateSection").classList.remove("hidden");
+  }
+
+  function selectDate(btn) {
+    resetButtons("date-btn");
+    btn.classList.add("bg-pink-500", "text-white");
+    selectedDate = btn.innerText;
+    document.getElementById("timeSection").classList.remove("hidden");
+  }
+
+  function selectTime(btn) {
+    resetButtons("time-btn");
+    btn.classList.add("bg-pink-500", "text-white");
+    selectedTime = btn.innerText;
+
+    const summary = document.getElementById("summary");
+    const summaryText = document.getElementById("summaryText");
+    summaryText.innerText = `${selectedDay}, ${selectedDate} • ${selectedTime}`;
+    summary.classList.remove("hidden");
+
+    const confirmBtn = document.getElementById("confirmBtn");
+    confirmBtn.disabled = false;
+    confirmBtn.classList.remove("bg-gray-300", "cursor-not-allowed");
+    confirmBtn.classList.add("bg-pink-500", "hover:bg-pink-600");
+  }
+</script>
+
+<!-- ================= BUTTON STYLES ================= -->
+<style>
+  .day-btn, .date-btn, .time-btn {
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+  }
+</style>
+
+</body>
+</html>

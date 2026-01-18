@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masuk — Sejalan</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animasi Halus -->
+  <style>
+    body {
+      scroll-behavior: smooth;
+    }
+
+    .fade-up {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-100
+             flex items-center justify-center px-4">
+
+  <!-- ================= LOGIN CARD ================= -->
+  <div class="w-full max-w-md">
+
+    <div class="bg-white rounded-3xl shadow-xl p-8 fade-up">
+
+      <!-- Logo -->
+      <div class="flex flex-col items-center mb-8">
+        <div class="w-20 h-20 rounded-full
+                    bg-gradient-to-br from-white-500 to-rose-600
+                    text-white flex items-center justify-center
+                    font-bold text-2xl shadow">
+          <img
+      src="assets/logo-sejalan.png"
+      alt="Sejalan"
+      class="h-20 w-auto"
+    />
+        </div>
+        <h1 class="mt-4 text-2xl font-bold text-gray-900">
+          Selamat Datang Kembali
+        </h1>
+        <p class="mt-2 text-sm text-gray-500 text-center">
+          Masuk untuk melanjutkan perjalananmu bersama Sejalan
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form id="loginForm" class="space-y-5">
+
+        <div>
+          <label class="text-sm text-gray-600">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="nama@email.com"
+            required
+            class="mt-1 w-full px-4 py-3 rounded-xl border
+                   focus:outline-none focus:ring-2 focus:ring-pink-400"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm text-gray-600">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="••••••••"
+            required
+            class="mt-1 w-full px-4 py-3 rounded-xl border
+                   focus:outline-none focus:ring-2 focus:ring-pink-400"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-pink-500 to-rose-600
+                 text-white py-3 rounded-xl font-medium
+                 hover:opacity-90 transition">
+          Masuk
+        </button>
+      </form>
+
+      <!-- Register -->
+      <p class="mt-6 text-center text-sm text-gray-600">
+        Belum punya akun?
+        <a href="register.html"
+           class="text-pink-600 font-medium hover:underline">
+          Daftar di sini
+        </a>
+      </p>
+
+    </div>
+
+    <p class="mt-6 text-center text-xs text-gray-400 fade-up"
+       style="animation-delay: .2s;">
+      SEJALAN — Bertemu, Bertumbuh, Menuju Kita
+    </p>
+
+  </div>
+
+  <!-- ================= SCRIPT LOGIN (ASLI, TIDAK DIUBAH) ================= -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import {
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const loginForm = document.getElementById("loginForm");
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        const user = userCredential.user;
+
+        // 🔐 CEK EMAIL VERIFIED
+        if (!user.emailVerified) {
+          alert("Silakan verifikasi email terlebih dahulu.");
+          return;
+        }
+
+        alert("Login berhasil!");
+        window.location.href = "dashboard.html";
+
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
+
+</body>
+</html>
